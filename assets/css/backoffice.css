@@ -1,0 +1,12 @@
+/* ------------------------ BackOffice ------------------------*/
+#search-icon {
+  line-height: 2;
+}
+
+#search-icon:hover {
+  color: red;
+}
+
+#pesquisar {
+  border: 1px solid gray;
+}
