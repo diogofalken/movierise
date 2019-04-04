@@ -17,15 +17,28 @@ class Authentication_Model extends CI_Model {
   }
 
   public function register($data) {
-    // Verify if there is already this email in db
+    if($this->verifyEmail($data['email'])) {
+      $this->db->insert("t_users", $data);
+    }
+  }
+
+  private function verifyEmail($email) {
     $this->db->select("*");
     $this->db->from("t_users");
-    $this->db->where("email='{$data['email']}'");
+    $this->db->where("email='{$email}'");
 
     $query = $this->db->get();
 
     if($query->num_rows() == 0) {
-      $this->db->insert("t_users", $data);
+      return true; // If it not exists in db
+    }
+    return false; // If it already exists in db
+  }
+  
+  public function forgetPassword($data) {
+    if(!$this->verifyEmail($data['email'])) {
+      $this->db->where("email='{$data['email']}'");
+      $this->db->update("t_users", $data);
     }
   }
 }

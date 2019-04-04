@@ -80,7 +80,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="database/db_updatepassword.php" method="post">
+          <form action="<?php echo base_url('authentication/forgetPassword')?>" method="post">
             <p>
               Forgot your password? Please enter your email and the new password.
             </p>

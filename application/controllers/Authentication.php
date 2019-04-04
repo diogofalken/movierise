@@ -33,7 +33,6 @@ class Authentication extends CI_Controller {
     if($result != FALSE) {
       redirect("backoffice");
     } else {
-      echo "ERRO";
       redirect("");
     }
   }
@@ -43,8 +42,10 @@ class Authentication extends CI_Controller {
       "email" => $this->input->post("email"),
       "password" => md5($this->input->post("password"))
     );
+
+    $this->Authentication_Model->forgetPassword($data);
+    redirect(""); 
   }
-  
 }
 
 ?>
