@@ -10,7 +10,9 @@ document.querySelector("#search-icon").addEventListener("click", function() {
   xmlhttp.open(
     "GET",
     "http://www.omdbapi.com/?s=" +
-      document.querySelector("#pesquisar").value.replace(" ", "+") +
+      document
+        .querySelector("#pesquisar")
+        .value.replace(new RegExp(" ", "g"), "+") +
       "&apikey=a4c49050",
     true
   );
@@ -29,46 +31,13 @@ function imageFormatter(value, row) {
   return '<img  src="' + value + '" height="100" width="100"/>';
 }
 
-var checkedRows = [];
-
-$("#table").on("check.bs.table", function(e, row) {
-  checkedRows.push({
-    poster: row.Poster,
-    name: row.Title,
-    description: row.Year,
-    id: row.imdbID
-  });
-});
-
-$("#table").on("uncheck.bs.table", function(e, row) {
-  $.each(checkedRows, function(index, value) {
-    if (value.name === row.Title) {
-      checkedRows.splice(index, 1);
-    }
-  });
-});
-
 function enviar(id) {
-  var request = $.ajax({
-    type: "POST",
-    url: "http://localhost/Ficha1/database/searchIMDB.php",
-    data: {
-      movie_name: id
-    },
-    dataType: "html"
-  });
+  window.location.href = "./Movie/insertMovieC/?id=" + id;
 }
-
-$("#add_cart").click(function() {
-  $.each(checkedRows, function(index, value) {
-    enviar(value.id);
-  });
-});
 
 window.operateEvents = {
   "click .add_button": function(e, value, row, index) {
-    console.log(row["imdbID"]);
-    enviar(row["imdbID"]);
+    enviar(row["imdbID"].replace(new RegExp(" ", "g"), ""));
   }
 };
 

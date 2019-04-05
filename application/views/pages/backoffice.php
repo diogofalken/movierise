@@ -9,8 +9,8 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/backoffice.css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/backoffice.css')?>" />
   <title>MovieRise | Backoffice</title>
 </head>
 
@@ -54,7 +54,6 @@
   <table id="table" class="table text-center" data-method="post">
     <thead>
       <tr>
-        <th data-checkbox="true" data-field="state"></th>
         <th data-field="Poster" data-formatter="imageFormatter">Poster</th>
         <th data-field="Title">Movie Name</th>
         <th data-field="Year">Description</th>
@@ -73,40 +72,28 @@
           <th scope="col">ID</th>
           <th scope="col">Movie Name</th>
           <th scope="col">Description</th>
+          <th scope="col">Type</th>
           <th scope="col">Creation Date</th>
           <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
-
         <?php 
-          include "database/db_connect.php";
-
-          $sql = "select * from t_movies";
-
-          if($result = mysqli_query($conn, $sql)) {
-            while ($row = $result->fetch_assoc()) {
-              $field1name = $row["id"];
-              $field2name = $row["nome"];
-              $field3name = $row["descricao"];
-              $field4name = $row["data"];
-              
-              echo '<tr>
-                      <th scope="row">'.$field1name.'</th>
-                      <td>'.$field2name.'</td>
-                      <td>'.$field3name.'</td>
-                      <td>'.$field4name.'</td>
+          foreach($media as $movie) {
+            echo '<tr>
+                      <th scope="row">'.$movie->id.'</th>
+                      <td>'.$movie->nome.'</td>
+                      <td>'.$movie->descricao.'</td>
+                      <td>'.$movie->type.'</td>
+                      <td>'.$movie->data.'</td>
                       <td>
                         <button type="button" class="btn btn-success">Visualizar</button>
                         <button type="button" class="btn btn-warning">Editar</button>
                         <button type="button" class="btn btn-danger">Excluir</button>
                       </td>
                     </tr>';
-            }
           }
-          mysqli_close($conn);
-
-          ?>
+        ?>
       </tbody>
     </table>
   </section>
@@ -119,8 +106,8 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
   <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
-  <script src="js/script.js"></script>
-  <script src="js/admin.js"></script>
+  <script src="<?php echo base_url('assets/js/script.js')?>"></script>
+  <script src="<?php echo base_url('assets/js/admin.js')?>"></script>
 </body>
 
 </html>
