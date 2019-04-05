@@ -42,11 +42,11 @@
           <i class="fas fa-search input-group-text" id="search-icon"></i>
         </div>
       </div>
-      <div class="col-md-4 text-center text-md-right">
+      <!--<div class="col-md-4 text-center text-md-right">
         <button type="button" class="btn btn-primary h-100 w-75" id="add_cart">
           Add
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
   </div>
@@ -80,18 +80,22 @@
       <tbody>
         <?php 
           foreach($media as $movie) {
-            echo '<tr>
-                      <th scope="row">'.$movie->id.'</th>
-                      <td>'.$movie->nome.'</td>
-                      <td>'.$movie->descricao.'</td>
-                      <td>'.$movie->type.'</td>
-                      <td>'.$movie->data.'</td>
-                      <td>
-                        <button type="button" class="btn btn-success">Visualizar</button>
-                        <button type="button" class="btn btn-warning">Editar</button>
-                        <button type="button" class="btn btn-danger">Excluir</button>
-                      </td>
-                    </tr>';
+            echo '<tr>';
+            echo '<th scope="row">'.$movie->id.'</th>';
+            echo '<td>'.$movie->nome.'</td>';
+            echo '<td>'.$movie->descricao.'</td>';
+            echo '<td>'.$movie->type.'</td>';
+            echo '<td>'.$movie->data.'</td>';
+            echo "<form action=". base_url("Movie/removeMovie") ." method=\"POST\">";
+						echo "<td class=\"align-middle\">";
+						echo "<div class=\"btn-group\" role=\"group\">";
+						echo "<a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-success\">View</a>";
+						echo "<input type=\"text\" name=\"id\" class=\"d-none\" value=\"{$movie->id}\" readonly>";
+						echo "<button type=\"submit\" class=\"btn btn-danger\">Remove</button>";
+						echo "</div>";
+						echo "</td>";
+            echo "</form>";
+            echo "</tr>";
           }
         ?>
       </tbody>

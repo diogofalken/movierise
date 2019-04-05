@@ -32,7 +32,7 @@ function imageFormatter(value, row) {
 }
 
 function enviar(id) {
-  window.location.href = "./Movie/insertMovieC/?id=" + id;
+  window.location.href = "./Movie/insertMovie/?id=" + id;
 }
 
 window.operateEvents = {

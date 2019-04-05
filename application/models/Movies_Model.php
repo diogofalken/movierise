@@ -25,5 +25,9 @@ class Movies_Model extends CI_Model {
       $this->db->insert("t_movies", $data);
     }
   }
+
+  public function removeMovie($id) {
+    $this->db->delete("t_movies", array('id' => $id));
+  }
 }
 ?>
