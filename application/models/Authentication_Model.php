@@ -5,7 +5,7 @@ class Authentication_Model extends CI_Model {
 
   public function login($data) {
   
-    $this->db->select("email");
+    $this->db->select("*");
     $this->db->from("t_users");
     $this->db->where("email='{$data['email']}' AND password ='{$data['password']}'");
     

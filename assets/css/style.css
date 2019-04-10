@@ -49,3 +49,7 @@ hr {
 .card-img-top {
   height: 300px !important;
 }
+
+.dropdown-item:hover {
+  color: #16181b !important;
+}

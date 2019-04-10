@@ -23,9 +23,18 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link text-light" href="#">Inicio</a>
-        <a class="nav-item nav-link text-light" href="#">Perfil</a>
-        <a class="nav-item nav-link text-light" href="index.php">Logout</a>
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php echo $this->session->userdata("nome");?>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item active" href="<?php echo base_url("backoffice"); ?>">Backoffice</a>
+            <a class=" dropdown-item" href="<?php echo base_url("authentication/logout"); ?>">Logout</a>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -42,11 +51,6 @@
           <i class="fas fa-search input-group-text" id="search-icon"></i>
         </div>
       </div>
-      <!--<div class="col-md-4 text-center text-md-right">
-        <button type="button" class="btn btn-primary h-100 w-75" id="add_cart">
-          Add
-        </button>
-      </div> -->
     </div>
   </div>
   </div>

@@ -19,8 +19,23 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+        <?php if($this->session->userdata("email")) : ?>
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php echo $this->session->userdata("nome");?>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="<?php echo base_url("backoffice"); ?>">Backoffice</a>
+            <a class=" dropdown-item" href="<?php echo base_url("authentication/logout"); ?>">Logout</a>
+          </div>
+        </div>
+        <?php else: ?>
         <a class="nav-item nav-link text-light" data-toggle="modal" data-target="#login-modal">Sign In</a>
         <a class="nav-item nav-link text-light bg-primary" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a>
+        <?php endif; ?>
       </div>
     </div>
   </nav>
@@ -113,7 +128,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="<?php echo base_url('authentication/register')?>" method="post">
+          <form action="<?php echo base_url('authentication/register')?>" method="post"
+            onsubmit="return validation(this)">
             <div class="form-group">
               <input type="text" class="form-control" id="exampleFormControlInput1" name="name"
                 placeholder="Username..." />

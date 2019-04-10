@@ -23,6 +23,10 @@ class Authentication extends CI_Controller {
   }
   
   public function login() {
+    if ($this->session->userdata("email")) {
+			redirect("backoffice");
+    }
+    
     $data = array(  
       "email" => $this->input->post("email"),
       "password" => md5($this->input->post("password"))
@@ -31,7 +35,13 @@ class Authentication extends CI_Controller {
     $result = $this->Authentication_Model->login($data);
 
     if($result != FALSE) {
-      redirect("backoffice");
+      $sess_array = array(
+				"nome" => $result[0]->nome,
+				"email" => $result[0]->email,
+			);
+			// Sets new session for 5min
+			$this->session->set_userdata($sess_array);
+			redirect("backoffice");
     } else {
       redirect("");
     }
@@ -46,6 +56,12 @@ class Authentication extends CI_Controller {
     $this->Authentication_Model->forgetPassword($data);
     redirect(""); 
   }
+
+  public function logout() {
+    $this->session->sess_destroy();
+    redirect();
+  }
 }
+
 
 ?>

@@ -10,3 +10,18 @@ $(document).ready(function() {
     }
   });
 });
+
+/* Sign in verification */
+function validation(form) {
+  let inputs = form.querySelectorAll("input:not([type=file])");
+  let returnValue = true;
+  inputs.forEach(input => {
+    if (input.value.trim().length == 0) {
+      input.style.borderBottom = "1px solid red";
+      returnValue = false;
+    } else {
+      input.style.borderBottom = "1px solid grey";
+    }
+  });
+  return returnValue;
+}
