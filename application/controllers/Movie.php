@@ -29,7 +29,7 @@ class Movie extends CI_Controller {
   }
 
   public function removeMovie() {
-    $this->Movies_Model->removeMovie($this->input->post("id"));
+    $this->Movies_Model->removeMovie($this->uri->segment(3,0));
     redirect('backoffice');
   }
 }

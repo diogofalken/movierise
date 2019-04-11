@@ -16,7 +16,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="myNav">
-    <a class="navbar-brand font-weight-bold" id="logo" href="backoffice.php">movie<span>rise</span></a>
+    <a class="navbar-brand font-weight-bold" id="logo" href="#">movie<span>rise</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
 
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item active" href="<?php echo base_url("backoffice"); ?>">Backoffice</a>
+            <a class="dropdown-item" href="<?php echo base_url("backoffice"); ?>">Backoffice</a>
             <a class=" dropdown-item" href="<?php echo base_url("authentication/logout"); ?>">Logout</a>
           </div>
         </div>
@@ -90,15 +90,15 @@
             echo '<td>'.$movie->descricao.'</td>';
             echo '<td>'.$movie->type.'</td>';
             echo '<td>'.$movie->data.'</td>';
-            echo "<form action=". base_url("Movie/removeMovie") ." method=\"POST\">";
 						echo "<td class=\"align-middle\">";
 						echo "<div class=\"btn-group\" role=\"group\">";
-						echo "<a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-success\">View</a>";
-						echo "<input type=\"text\" name=\"id\" class=\"d-none\" value=\"{$movie->id}\" readonly>";
-						echo "<button type=\"submit\" class=\"btn btn-danger\">Remove</button>";
+            echo "<a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-success\">View</a>";
+            echo anchor('Movie/removeMovie/' . $movie->id, 'Remove', array(
+              'rel' => 'noopener noreferrer', 
+              'class' =>  'btn btn-danger'
+            ));
 						echo "</div>";
 						echo "</td>";
-            echo "</form>";
             echo "</tr>";
           }
         ?>

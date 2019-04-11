@@ -8,10 +8,25 @@ class Main extends CI_Controller {
       show_404();
 		}
 
-	$this->load->model("Movies_Model");
-	$media["media"] = $this->Movies_Model->getTiles();
-	
-	$this->load->view("pages/{$page}", $media);
+		$this->loadPage($page);
+	}
+
+	private function loadPage($page) {
+		switch($page) {
+			case "backoffice": 
+			if(!$this->session->userdata("email")) {
+				redirect();
+			}
+			default:
+			$this->load->view("pages/{$page}", $this->getTiles());
+			
+		}
+	}
+
+	private function getTiles() {
+		$this->load->model("Movies_Model");
+		$media["media"] = $this->Movies_Model->getTiles();
+		return $media;
 	}
 }
 
