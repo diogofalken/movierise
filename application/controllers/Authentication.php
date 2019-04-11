@@ -61,6 +61,11 @@ class Authentication extends CI_Controller {
     $this->session->sess_destroy();
     redirect();
   }
+
+  public function removeClient() {
+    $this->Authentication_Model->removeClient($this->uri->segment(3,0));
+    redirect('backoffice');
+  }
 }
 
 

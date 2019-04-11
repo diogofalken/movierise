@@ -41,5 +41,14 @@ class Authentication_Model extends CI_Model {
       $this->db->update("t_users", $data);
     }
   }
+
+  public function getAllClients() {
+    $query = $this->db->get("t_users");
+    return $query->result();
+  }
+
+  public function removeClient($id) {
+    $this->db->delete("t_users", array('ID' => $id));
+  }
 }
 ?>

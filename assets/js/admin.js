@@ -20,6 +20,8 @@ document.querySelector("#search-icon").addEventListener("click", function() {
 });
 
 function loadMovies(myArr) {
+  let table = document.getElementById("table");
+  table.classList.remove("d-none");
   $(function() {
     $("#table").bootstrapTable({
       data: myArr

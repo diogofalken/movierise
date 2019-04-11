@@ -30,8 +30,8 @@
           </a>
 
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="<?php echo base_url("backoffice"); ?>">Backoffice</a>
+            <a class="dropdown-item" href="#media_table">Media</a>
+            <a class="dropdown-item" href="#client_table">Clients</a>
             <a class=" dropdown-item" href="<?php echo base_url("authentication/logout"); ?>">Logout</a>
           </div>
         </div>
@@ -45,7 +45,7 @@
         Itens
       </div>
       <div class="col-md-4 input-group">
-        <input type="text" class="form-control h-100" aria-label="Search" placeholder="Search"
+        <input type="text" class="form-control h-100" aria-label="Search" placeholder="Search to add movie"
           aria-describedby="search-icon" id="pesquisar" name="pesquisar" />
         <div class="input-group-append" id="search_div">
           <i class="fas fa-search input-group-text" id="search-icon"></i>
@@ -55,7 +55,7 @@
   </div>
   </div>
   <!-- Search Table -->
-  <table id="table" class="table text-center" data-method="post">
+  <table id="table" class="table text-center d-none" data-method="post">
     <thead>
       <tr>
         <th data-field="Poster" data-formatter="imageFormatter">Poster</th>
@@ -69,6 +69,8 @@
   </table>
   <!-- End of Search Table -->
 
+  <!-- Movie Table -->
+  <h2 class="text-center title" id="media_table">Media</h2>
   <section class="table-responsive">
     <table class="table text-center">
       <thead class="thead-dark">
@@ -105,6 +107,43 @@
       </tbody>
     </table>
   </section>
+  <!-- End of Movie Table -->
+  <!-- Clients Table -->
+  <h2 class="text-center title" id="client_table">Clients</h2>
+  <section class="table-responsive">
+    <table class="table text-center">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Data</th>
+          <th scope="col">Atualização</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php 
+          foreach($clients as $client) {
+            echo '<tr>';
+            echo '<td>'.$client->nome.'</td>';
+            echo '<td>'.$client->email.'</td>';
+            echo '<td>'.$client->data.'</td>';
+            echo '<td>'.$client->atualizacao.'</td>';
+						echo "<td class=\"align-middle\">";
+						echo "<div class=\"btn-group\" role=\"group\">";
+            echo anchor('Authentication/removeClient/' . $client->ID, 'Remove', array(
+              'rel' => 'noopener noreferrer', 
+              'class' =>  'btn btn-danger'
+            ));
+						echo "</div>";
+						echo "</td>";
+            echo "</tr>";
+          }
+        ?>
+      </tbody>
+    </table>
+  </section>
+  <!-- End of Clients Table -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

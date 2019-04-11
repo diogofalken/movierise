@@ -9,8 +9,8 @@ class Movie extends CI_Controller {
     $this->load->model("Movies_Model");
   }
 
-  public function insertMovie() {
-    $movie_id = $this->input->get("id");
+    public function insertMovie() {
+      $movie_id = $this->input->get("id");
     $jsonurl = "http://www.omdbapi.com/?i={$movie_id}&apikey=a4c49050";
     $json = file_get_contents($jsonurl);
     $jsondata = json_decode($json, true);

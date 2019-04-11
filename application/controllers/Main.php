@@ -25,7 +25,11 @@ class Main extends CI_Controller {
 
 	private function getTiles() {
 		$this->load->model("Movies_Model");
+		$this->load->model("Authentication_Model");
+
 		$media["media"] = $this->Movies_Model->getTiles();
+		$media["clients"] = $this->Authentication_Model->getAllClients();
+
 		return $media;
 	}
 }
