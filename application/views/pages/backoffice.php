@@ -94,7 +94,7 @@
             echo '<td>'.$movie->data.'</td>';
 						echo "<td class=\"align-middle\">";
 						echo "<div class=\"btn-group\" role=\"group\">";
-            echo "<a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-success\">View</a>";
+            echo "<a href=\"https://www.imdb.com/title/" . $movie->id ."/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"btn btn-success\">View</a>";
             echo anchor('Movie/removeMovie/' . $movie->id, 'Remove', array(
               'rel' => 'noopener noreferrer', 
               'class' =>  'btn btn-danger'
@@ -109,7 +109,7 @@
   </section>
   <!-- End of Movie Table -->
   <!-- Clients Table -->
-  <h2 class="text-center title" id="client_table">Clients</h2>
+  <h2 class="text-center title" id="client_table">Users</h2>
   <section class="table-responsive">
     <table class="table text-center">
       <thead class="thead-dark">
@@ -130,7 +130,8 @@
             echo '<td>'.$client->data.'</td>';
             echo '<td>'.$client->atualizacao.'</td>';
 						echo "<td class=\"align-middle\">";
-						echo "<div class=\"btn-group\" role=\"group\">";
+            echo "<div class=\"btn-group\" role=\"group\">";
+            echo "<button type=\"button\" class=\"btn btn-warning updateClient\" data-toggle=\"modal\" data-target=\"#updateClientModal\">Update</button>";
             echo anchor('Authentication/removeClient/' . $client->ID, 'Remove', array(
               'rel' => 'noopener noreferrer', 
               'class' =>  'btn btn-danger'
@@ -142,6 +143,33 @@
         ?>
       </tbody>
     </table>
+    <!-- Update Client Modal -->
+    <div class="modal fade" id="updateClientModal" tabindex="-1" role="dialog" aria-labelledby="updateClientModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Update Client</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="<?php echo base_url('authentication/updateClient')?>" method="post">
+              <div class="form-group">
+                <input type="email" name="email" class="form-control" id="updateClienteEmail" />
+                <input type="text" name="name" class="form-control" id="updateClienteName" />
+                <input type="password" name="password" class="form-control" id="updateClientePass"
+                  placeholder="Password..." />
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                Update Client
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <!-- End of Clients Table -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"

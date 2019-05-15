@@ -50,5 +50,23 @@ class Authentication_Model extends CI_Model {
   public function removeClient($id) {
     $this->db->delete("t_users", array('ID' => $id));
   }
+
+  public function updateClient($data) {
+    if(empty($this->input->post("password"))) {
+      $this->db->set('nome', $data["nome"]);
+      $this->db->set('atualizacao', "Alterar Nome");
+    }
+    if(empty($data["nome"])) {
+      $this->db->set('password', $data["password"]);
+      $this->db->set('atualizacao', "Alterar Password");
+    } 
+    if(!empty($this->input->post("password")) && !empty($data["nome"])) {
+      $this->db->set('nome', $data["nome"]);
+      $this->db->set('password', $data["password"]);
+      $this->db->set('atualizacao', "Alterar Nome e Password");
+    }
+    $this->db->where('email', $data["email"]);
+    $this->db->update('t_users');
+  }
 }
 ?>

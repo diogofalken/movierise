@@ -10,3 +10,8 @@
 #pesquisar {
   border: 1px solid gray;
 }
+
+#updateClienteEmail {
+  pointer-events: none;
+  background-color: lightblue;
+}

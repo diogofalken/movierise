@@ -66,6 +66,16 @@ class Authentication extends CI_Controller {
     $this->Authentication_Model->removeClient($this->uri->segment(3,0));
     redirect('backoffice');
   }
+
+  public function updateClient() {
+    $data = array(
+      "email" => $this->input->post("email"),
+      "nome" => $this->input->post("name"),
+      "password" => md5($this->input->post("password"))
+    );
+    $this->Authentication_Model->updateClient($data);
+    redirect('backoffice'); 
+  }
 }
 
 

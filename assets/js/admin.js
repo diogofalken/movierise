@@ -48,3 +48,17 @@ function operateFormatter(value, row, index) {
     '<button type="button" class="btn btn-primary add_button">Add</button>'
   ].join("");
 }
+
+$(".updateClient").click(function() {
+  let $columns = $(this)
+    .closest("tr")
+    .find("td");
+
+  let values = [];
+  $columns.each(function(i, item) {
+    values.push(item.innerHTML);
+  });
+
+  $("#updateClienteName").attr("value", values[0]);
+  $("#updateClienteEmail").attr("value", values[1]);
+});
