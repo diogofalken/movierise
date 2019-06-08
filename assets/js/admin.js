@@ -9,7 +9,7 @@ document.querySelector("#search-icon").addEventListener("click", function() {
   };
   xmlhttp.open(
     "GET",
-    "http://www.omdbapi.com/?s=" +
+    "https://www.omdbapi.com/?s=" +
       document
         .querySelector("#pesquisar")
         .value.replace(new RegExp(" ", "g"), "+") +
